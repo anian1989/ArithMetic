@@ -19,6 +19,23 @@ import java.util.Random;
  * </pre>
  *
  */
+/**
+ * <p>
+ * Description: 
+ * </p>
+ * @author zhangjunshuai
+ * @version 1.0
+ * Create Date: 2015年4月21日 下午5:54:09
+ * Project Name: ArithMetic
+ *
+ * <pre>
+ * Modification History: 
+  *             Date                                Author                   Version          Description 
+ * -----------------------------------------------------------------------------------------------------------  
+ * LastChange: $Date:2015年4月21日            $      $Author: zhangjunshuai$          $Rev:1.0 $         
+ * </pre>
+ *
+ */
 public class Merger {
 	/**
 	 * <p>
@@ -78,14 +95,8 @@ public class Merger {
 	 * @author zhangjunshuai
 	 * @date 2015年4月14日 下午4:49:14
 	 */
-	private static void ShowLocalMerge(){
-		Random random = new Random();
-		int rondomsize = random.nextInt(1000);
-		Integer[] a = new Integer[rondomsize];
-		for(int w =0;w<rondomsize;w++){
-			a[w] = random.nextInt(rondomsize+w);
-		}
-		System.out.println("-------实验长度："+rondomsize);
+	private static void ShowLocalMerge(Comparable[] a){
+		
 		int Bsize =1;//步长
 		do{
 			int start = 0;
@@ -117,10 +128,26 @@ public class Merger {
 	 */
 	private static void TopEnd(Comparable[]a,int lo,int hi){
 		if(hi <= lo) return;
-		int mid = lo + (hi  -lo)>>1;
+		int mid = lo + (hi  -lo)/2;
 		TopEnd(a,lo,mid);//将左半边排序
 		TopEnd(a,mid+1,hi);//将右半边排序
 		localMerge(a,lo,mid,hi);//归并结果
+	}
+	/**
+	 * <p>
+	 * 自下而上的排序
+	 * </p>
+	 * @author zhangjunshuai
+	 * @date 2015年4月21日 下午5:54:23
+	 * @param a
+	 */
+	public static void EndToUp(Comparable[] a){
+		int N = a.length;
+		Comparable[] aux = new Comparable[N];
+		for(int sz = 1;sz < N;sz = sz+sz){
+			for(int lo = 0; lo < N -sz;lo+=sz+sz)
+				localMerge(a,lo,lo+sz-1,Math.min(lo+sz+sz-1, N-1));
+		}
 	}
 	/**
 	 * <p>
@@ -130,7 +157,15 @@ public class Merger {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		ShowLocalMerge();
+		Random random = new Random();
+		int rondomsize = random.nextInt(1000);
+		Integer[] a = new Integer[rondomsize];
+		for(int w =0;w<rondomsize;w++){
+			a[w] = random.nextInt(rondomsize+w);
+		}
+		//ShowLocalMerge(a);
+		EndToUp(a);
+		show(a);
 	}
 
 }
