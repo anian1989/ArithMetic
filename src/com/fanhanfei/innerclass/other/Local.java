@@ -8,6 +8,7 @@ package com.fanhanfei.innerclass.other;
  */
 public class Local {
 
+	public String _name ="外部类的变量";
 	// 将类定义到方法中
 	public LocalInnerClassForMethod use(final String outword){
 		class LocalInnerClassForMethodUse implements LocalInnerClassForMethod{
@@ -15,7 +16,7 @@ public class Local {
 			@Override
 			public void sayHello(String word) {
 				
-				System.out.println("局部内部类"+outword);
+				System.out.println("局部内部类"+outword+_name);
 			}
 		}
 		return new LocalInnerClassForMethodUse();

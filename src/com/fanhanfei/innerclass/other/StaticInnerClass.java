@@ -1,4 +1,7 @@
 package com.fanhanfei.innerclass.other;
+
+import com.fanhanfei.innerclass.other.InnerClassBasic.InnerClass;
+
 /**
 * @ClassName: StaticInnerClass 
 * @Description: ¾²Ì¬ÄÚ²¿Àà 
@@ -68,7 +71,6 @@ public class StaticInnerClass {
 	public static void main(String[] args) {
 		StaticInnerClass staticInnerClass = new StaticInnerClass();
 		staticInnerClass.display();
-
 	}
 
 }
