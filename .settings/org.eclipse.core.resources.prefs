@@ -1,3 +1,4 @@
 eclipse.preferences.version=1
 encoding//templates/a.ftl=GBK
 encoding//templates/b.ftl=GBK
+encoding/test.txt=UTF-8
